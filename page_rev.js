@@ -30,32 +30,8 @@ $(function() {
         return $(formElement).closest('li').attr('data-todoitem-id');
     }
 
-    // Handle insert
-    $('#add-item').submit(function(evt) {
-        var textbox = $('#new-item-text'),
-            itemText = textbox.val();
-        if (itemText !== '') {
-            todoItemTable.insert({ text: itemText, complete: false }).then(refreshTodoItems, handleError);
-        }
-        textbox.val('').focus();
-        evt.preventDefault();
-    });
-
-    // Handle update
-    $(document.body).on('change', '.item-text', function() {
-        var newText = $(this).val();
-        todoItemTable.update({ id: getTodoItemId(this), text: newText }).then(null, handleError);
-    });
-
-    $(document.body).on('change', '.item-complete', function() {
-        var isComplete = $(this).prop('checked');
-        todoItemTable.update({ id: getTodoItemId(this), complete: isComplete }).then(refreshTodoItems, handleError);
-    });
-
-    // Handle delete
-    $(document.body).on('click', '.item-delete', function () {
-        todoItemTable.del({ id: getTodoItemId(this) }).then(refreshTodoItems, handleError);
-    });
+    
+    
 
     //update la pagina
     setInterval(function () {
