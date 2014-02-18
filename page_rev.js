@@ -11,7 +11,7 @@ $(function() {
             var listItems = $.map(todoItems, function(item) {
                 return $('<li>')
                     .attr('data-todoitem-id', item.id)
-                    .append($('<button class="item-delete">Borrar</button>'))
+                    .append($('<button class="item-delete">Delete</button>'))
                     .append($('<input type="checkbox" class="item-complete">').prop('checked', item.complete))
                     .append($('<div>').append($('<input class="item-text">').val(item.text)));
             });
@@ -57,6 +57,11 @@ $(function() {
         todoItemTable.del({ id: getTodoItemId(this) }).then(refreshTodoItems, handleError);
     });
 
+    //update la pagina
+    setInterval(function () {
+        refreshTodoItems();
+    }, 5000);
+
     // On initial load, start by fetching the current data
-    refreshTodoItems();
+    //refreshTodoItems();
 });
